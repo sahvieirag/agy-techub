@@ -1,6 +1,6 @@
 # Antigravity Workshop Portal — Dev Hub 🛸🌍
 
-Fala, pessoal! Esse repositório é a nossa central oficial de laboratórios práticos (hands-on) e desafios do **Antigravity 2.0**! Criei esse espaço para vocês verem de perto a mágica da **Engenharia Cognitiva Autônoma** integrada ao **Google Gemini (via Vertex AI SDK)**.
+Fala, pessoal! Esse repositório é a nossa central oficial de laboratórios práticos (hands-on) e desafios do **Antigravity 2.0**!
 
 Aqui, o foco é colocar a mão na massa de verdade e ter **100% de autonomia**! Por isso mesmo, apaguei todos os "gabaritos" das pastas públicas. Não tem colher de chá ou código pronto: o poder de comandar o agente inteligente para desenhar, codificar e testar os projetos do zero é todinho de vocês!
 
@@ -70,4 +70,4 @@ Mesmo testando localmente, o Antigravity segue as melhores práticas de desenvol
 
 Gostou do workshop ou quer bater um papo sobre como levar essa engenharia cognitiva autônoma para os times de desenvolvimento da sua empresa? Vamos nos conectar!
 
-Desenvolvido com carinho por **[Sabrina Vieira Guerra](https://github.com/sahvieirag)**. 🛸🚀
+Desenvolvido com carinho por **[Sabrina Guerra](https://github.com/sahvieirag)**. 🛸🚀
