@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Workshop Portal - B2B Webhooks & Media Engine</title>
+  
+  <!-- Fontes Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM - TEMA DARK CYBERPUNK PREMIUM
+       ========================================================================== */
+    :root {
+      --bg-primary: #040711;
+      --bg-gradient: radial-gradient(circle at 50% 50%, #0a0f22 0%, #040711 100%);
+      --bg-card: rgba(15, 23, 42, 0.5);
+      --border-glass: rgba(255, 255, 255, 0.06);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      /* Cores de Destaque */
+      --color-blue: #2563eb;
+      --color-cyan: #06b6d4;
+      --color-purple: #7c3aed;
+      --color-rose: #f43f5e;
+      --color-emerald: #10b981;
+      
+      --shadow-premium: 0 15px 50px -10px rgba(0, 0, 0, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      background-image: var(--bg-gradient);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Partículas de Luz */
+    .glow-light {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Container */
+    .portal-wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      position: relative;
+      z-index: 1;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Header */
+    .portal-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .brand-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: rgba(124, 58, 237, 0.08);
+      padding: 6px 16px;
+      border-radius: 30px;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+    }
+
+    .portal-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .portal-header p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Grade Principal (3 colunas lado a lado) */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 1024px) {
+      .demo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 24px;
+      }
+    }
+
+    /* Card */
+    .demo-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-premium);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .demo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(255,255,255,0.03), transparent 40%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--card-glow-border);
+      box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.9), var(--card-glow-shadow);
+    }
+
+    .card-top-light {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--card-accent-1), var(--card-accent-2));
+    }
+
+    /* Icon e Badge */
+    .card-header-area {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--card-accent-1), var(--card-accent-2));
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .icon-box svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .tech-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--card-accent-2);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Descrição */
+    .demo-card h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .demo-card p.demo-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+
+    /* Área de Ações (Duas Vias: Starter vs Solution) */
+    .action-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .btn-portal {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 15px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Botão de Starter (Esboço/Desafio) */
+    .btn-portal.btn-starter {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-portal.btn-starter:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--text-secondary);
+    }
+
+    /* Botão de Solution (Resultado Final Perfeito) */
+    .btn-portal.btn-solution {
+      background: linear-gradient(135deg, var(--card-accent-1) 0%, var(--card-accent-2) 100%);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-portal.btn-solution:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), var(--btn-glow-shadow);
+    }
+
+    .btn-portal svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Informações de Apoio/Rodapé */
+    .portal-footer {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 30px;
+      margin-top: auto;
+    }
+
+    .portal-footer a {
+      color: var(--color-purple);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .portal-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Banner do Guia Prático */
+    .guide-banner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.20);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.05);
+      animation: pulse-emerald 3s infinite ease-in-out;
+      max-width: 90%;
+      text-align: left;
+    }
+
+    @keyframes pulse-emerald {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.05);
+        border-color: rgba(16, 185, 129, 0.20);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+        border-color: rgba(16, 185, 129, 0.40);
+      }
+    }
+
+    .guide-badge {
+      background: linear-gradient(135deg, var(--color-emerald) 0%, #059669 100%);
+      color: #ffffff;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+
+    .guide-text {
+      font-size: 0.92rem;
+      color: var(--text-primary);
+    }
+
+    .guide-text a {
+      color: var(--color-emerald);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px dashed rgba(16, 185, 129, 0.6);
+      transition: all 0.2s ease;
+    }
+
+    .guide-text a:hover {
+      color: #34d399;
+      border-bottom-style: solid;
+      border-bottom-color: #34d399;
+    }
+
+    .guide-text code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #34d399;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-light"></div>
+
+  <div class="portal-wrapper">
+    
+    <header class="portal-header">
+      <span class="brand-tag">Workshop Hands-on</span>
+      <h1>Antigravity Dev Hub</h1>
+      <p>Acesse o ponto de partida de cada desafio prático e lidere os agentes de inteligência artificial para criar, codificar e implantar as soluções do absoluto zero.</p>
+      
+      <div class="guide-banner">
+        <div class="guide-badge">LIVE DEMO</div>
+        <span class="guide-text">Participe do Módulo de Agro! Leia o <a href="./guide.html?file=LIVE_DEMO_AGRO_APRESENTACAO.md" target="_blank">Guia Prático da Apresentação 🌾🛸</a> para testar o <code>/grill-me</code>, <code>/goal</code> e muito mais!</span>
+      </div>
+    </header>
+
+    <main class="demo-grid">
+      
+      <!-- CARD 1: TECH (B2B SaaS Webhooks) -->
+      <div class="demo-card"
+           style="--card-glow-border: rgba(37, 99, 235, 0.4); 
+                  --card-glow-shadow: 0 0 25px rgba(37, 99, 235, 0.15); 
+                  --btn-glow-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+                  --card-accent-1: var(--color-blue); 
+                  --card-accent-2: var(--color-cyan);">
+        <div class="card-top-light"></div>
+        <div class="card-header-area">
+          <div class="icon-box">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <span class="tech-tag">CLI agy / express / crypto</span>
+        </div>
+        <h2>SaaS Webhooks Integration</h2>
+        <p class="demo-desc">Crie um servidor webhook ultra-seguro integrando parceiros (Stripe, HubSpot e Salesforce). Use o agente CLI do Antigravity para planejar, codificar e implantar um middleware de segurança HMAC SHA-256 e blindar os endpoints.</p>
+        
+        <div class="action-container">
+          <a href="./agy-techub-starter/tech-industry/index.html" target="_blank" class="btn-portal btn-starter">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            Abrir Starter (Protótipo Visual)
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 2: MEDIA (Content Explosion Engine) -->
+      <div class="demo-card"
+           style="--card-glow-border: rgba(124, 58, 237, 0.4); 
+                  --card-glow-shadow: 0 0 25px rgba(124, 58, 237, 0.15); 
+                  --btn-glow-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+                  --card-accent-1: var(--color-purple); 
+                  --card-accent-2: var(--color-rose);">
+        <div class="card-top-light"></div>
+        <div class="card-header-area">
+          <div class="icon-box">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+            </svg>
+          </div>
+          <span class="tech-tag">Desktop / image generation / a11y</span>
+        </div>
+        <h2>Media Omnichannel Engine</h2>
+        <p class="demo-desc">Use o agente Desktop Antigravity 2.0 para digerir a transcrição longa de um podcast executivo, gerar postagens otimizadas (LinkedIn, Twitter, Newsletter, Blog), criar uma arte de banner cyberpunk premium e auditar a acessibilidade da página final.</p>
+        
+        <div class="action-container">
+          <a href="./agy-techub-starter/media-industry/index.html" target="_blank" class="btn-portal btn-starter">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            Abrir Starter (Sem Conteúdo)
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 3: AGRO & PRECISION (Smart Farming Coordinator) -->
+      <div class="demo-card"
+           style="--card-glow-border: rgba(16, 185, 129, 0.4); 
+                  --card-glow-shadow: 0 0 25px rgba(16, 185, 129, 0.15); 
+                  --btn-glow-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+                  --card-accent-1: var(--color-emerald); 
+                  --card-accent-2: #059669;">
+        <div class="card-top-light"></div>
+        <div class="card-header-area">
+          <div class="icon-box">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 2 9 18zm0 0v-8"></path>
+            </svg>
+          </div>
+          <span class="tech-tag">CLI agy / grill-me / satellite</span>
+        </div>
+        <h2>Agro & Smart Farming</h2>
+        <p class="demo-desc">Use o agente CLI do Antigravity para capturar leituras de satélite (NDVI) contra a ferrugem do trigo, receitar fungicidas seguros via Embrapa/FAO, gerar cotações de insumos no ERP e simular o plano de voo 3D do drone Ceres-1.</p>
+        
+        <div class="action-container">
+          <button class="btn-portal btn-starter disabled" disabled style="opacity: 0.5; cursor: not-allowed; box-shadow: none;">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            Pasta Vazia (Peça ao Agente do Zero)
+          </button>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="portal-footer">
+      <p>&copy; 2026 Antigravity Workshop. Explore o <a href="./guide.html?file=LIVE_DEMO_AGRO_APRESENTACAO.md" target="_blank">Guia Prático da Apresentação (Agro) 🌾🛸</a> ou veja os <a href="./guide.html?file=BONUS_HANDSON_BACKEND.md" target="_blank">Exercícios Extras (Hands-on Backend) 📖</a>.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Efeito interativo que segue o cursor
+    document.querySelectorAll('.demo-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+      });
+    });
+  </script>
+</body>
+</html>

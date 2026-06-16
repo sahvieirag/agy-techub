@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Enter-View | Omnichannel Content Explosion Engine</title>
+
+  <!-- Fontes Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <!-- Header Executivo Superior -->
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="brand-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" />
+          <path d="M12 7V17M7 12H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>Gemini<span class="text-gradient"> Enter-View</span></h1>
+        <p class="brand-subtitle">Omnichannel Content Explosion Engine</p>
+      </div>
+    </div>
+
+    <div class="header-status">
+      <div class="status-indicator">
+        <span class="pulse-dot bg-success"></span>
+        <span class="status-text">Gemini 3.5 Flash Engine: <strong
+            id="gemini-enter-view-engine-state">Pronto</strong></span>
+      </div>
+      <div class="divider-v"></div>
+      <div class="status-indicator">
+        <span class="status-text">Porta: <strong>5176</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal do Dashboard -->
+  <main class="dashboard-grid">
+
+    <!-- COLUNA 1: TRANSCRIÇÃO & INSIGHTS (FONTE) -->
+    <section class="dashboard-col col-source">
+      <div class="panel glass-panel">
+        <div class="panel-header">
+          <div class="header-title-container">
+            <span class="panel-icon">🎙️</span>
+            <h2>Upload de Podcast / Áudio</h2>
+          </div>
+        </div>
+
+        <!-- Box Arrastar e Soltar (Simulado) -->
+        <div class="upload-dropzone" id="upload-zone">
+          <svg class="upload-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="17 8 12 3 7 8" />
+            <line x1="12" y1="3" x2="12" y2="15" />
+          </svg>
+          <p class="upload-main-text">Arrastar & Soltar arquivo de mídia</p>
+          <span class="upload-sub-text">Suporta MP3, WAV ou MP4 (Máx: 200MB)</span>
+        </div>
+
+        <div class="panel-divider"></div>
+
+        <div class="panel-header">
+          <div class="header-title-container">
+            <span class="panel-icon">📝</span>
+            <h2>Transcrição de Áudio Crua</h2>
+          </div>
+        </div>
+
+        <!-- Área da Transcrição Crua do Podcast -->
+        <div class="transcript-editor-wrapper">
+          <textarea id="podcast-transcript" class="transcript-textarea" spellcheck="false">
+[00:02:15] Host: Sejam muito bem-vindos ao Gemini Enter-View Podcast. Hoje estamos com Sabrina Guerra, especialista em transformação digital. Sabrina, como a inteligência artificial generativa está redefinindo os negócios tradicionais hoje?
+
+[00:02:35] Sabrina: Olá! Prazer enorme estar aqui. O grande erro que vejo as empresas cometerem hoje é tratar a IA como um simples chat inteligente. A verdadeira revolução acontece na integração ponta a ponta: quando a IA é conectada via SDK e APIs seguras às operações centrais do negócio, automatizando processos que antes levavam semanas, como conformidade de segurança regulatória, auditorias e até a geração de ativos multicanais na velocidade em que os dados são gerados.
+
+[00:03:15] Host: E qual o papel da segurança de dados (PII) e LGPD nesse novo ecossistema conectado?
+
+[00:03:30] Sabrina: Crucial. Não existe automação inteligente sem segurança por padrão (Secure by Default). O tráfego de informações precisa ser tratado sob um princípio de confiança zero (Zero Trust). Toda informação sensível de cliente precisa ser higienizada e mascarada de forma local antes de tocar qualquer nuvem pública ou modelo externo, resguardando a integridade legal da corporação.</textarea>
+        </div>
+
+        <div class="panel-divider"></div>
+
+        <div class="panel-header">
+          <div class="header-title-container">
+            <span class="panel-icon">💡</span>
+            <h2>Golden Nuggets Extraídos</h2>
+          </div>
+        </div>
+
+        <!-- Lista de Insights Extraídos pela IA -->
+        <div class="nugget-list" id="nugget-container">
+          <div class="nugget-item opacity-muted" id="nugget-1">
+            <span class="nugget-num">1</span>
+            <p class="nugget-text">A verdadeira revolução é a integração ponta a ponta da IA em APIs seguras.</p>
+          </div>
+          <div class="nugget-item opacity-muted" id="nugget-2">
+            <span class="nugget-num">2</span>
+            <p class="nugget-text">Segurança por padrão (Secure by Default) e Zero Trust são inegociáveis.</p>
+          </div>
+          <div class="nugget-item opacity-muted" id="nugget-3">
+            <span class="nugget-num">3</span>
+            <p class="nugget-text">Dados PII devem ser mascarados e higienizados de forma 100% local.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLUNA 2: CONSOLE DO MOTOR CRIATIVO (CENTRO) -->
+    <section class="dashboard-col col-gemini-enter-view">
+      <div class="panel glass-panel main-control-panel">
+        <div class="panel-header">
+          <div class="header-title-container">
+            <span class="panel-icon">🚀</span>
+            <h2>Creator Engine Terminal</h2>
+          </div>
+          <div class="metric-badge" id="gemini-enter-view-status-badge">Aguardando</div>
+        </div>
+
+        <!-- Botão de Disparo do Sistema Autônomo -->
+        <div class="action-container">
+          <button id="btn-trigger-explosion" class="btn btn-primary btn-glow-media">
+            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Disparar Explosão Omnichannel
+          </button>
+        </div>
+
+        <!-- Painel de Configuração da API do Gemini 3.5 Flash -->
+        <div class="api-settings-panel">
+          <div class="settings-toggle-row">
+            <label class="switch-label">
+              <input type="checkbox" id="toggle-real-api">
+              <span class="switch-custom"></span>
+              <span class="toggle-text">Conexão Real (API Gemini 3.5 Flash)</span>
+            </label>
+          </div>
+          <div class="api-key-input-row" id="api-key-row" style="display: none; margin-top: 12px;">
+            <input type="password" id="gemini-api-key" placeholder="Insira sua Gemini API Key (AIzaSy...)"
+              class="api-key-input">
+            <span class="api-key-hint">A chave é guardada localmente no navegador e nunca é enviada a nenhum outro
+              servidor.</span>
+          </div>
+        </div>
+
+        <!-- Checklist de Fases Criativas -->
+        <div class="process-checklist">
+          <h3>Fases do Pipeline Criativo</h3>
+          <div class="checklist-item" id="step-semantic">
+            <span class="check-box"></span>
+            <span class="check-text">Extração Semântica & Golden Nuggets</span>
+          </div>
+          <div class="checklist-item" id="step-blog">
+            <span class="check-box"></span>
+            <span class="check-text">Geração de Artigo de Blog SEO Otimizado</span>
+          </div>
+          <div class="checklist-item" id="step-social">
+            <span class="check-box"></span>
+            <span class="check-text">Geração de Posts Sociais (LinkedIn e X/Twitter)</span>
+          </div>
+          <div class="checklist-item" id="step-email">
+            <span class="check-box"></span>
+            <span class="check-text">Composição de Newsletter & Banners Campanha</span>
+          </div>
+        </div>
+
+        <div class="panel-divider"></div>
+
+        <!-- Terminal de Logs de Execução do Sistema -->
+        <div class="terminal-wrapper">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot-red"></span>
+              <span class="dot-yellow"></span>
+              <span class="dot-green"></span>
+            </div>
+            <span class="terminal-title">gemini-enter-view-media-explosion</span>
+            <span class="terminal-network-badge">VLAN-66-MEDIA</span>
+          </div>
+          <div class="terminal-console" id="media-console-logs">
+            <div class="console-line text-muted">// Motor Criativo Gemini Enter-View pronto para processamento.</div>
+            <div class="console-line text-muted">// Carregue a transcrição e clique em 'Disparar Explosão Omnichannel'
+              para iniciar a campanha.</div>
+            <div class="console-line command-line"><span class="prompt-prefix">gemini-enter-view@localhost:~$</span>
+              <span class="typed-cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLUNA 3: PREVIEWS MULTICANAIS (DIREITA) -->
+    <section class="dashboard-col col-previews">
+      <div class="panel glass-panel previews-panel">
+        <div class="panel-header">
+          <div class="header-title-container">
+            <span class="panel-icon">📱</span>
+            <h2>Ativos Multicanais Gerados</h2>
+          </div>
+        </div>
+
+        <!-- Abas Seletoras de Visualização (Tabs) -->
+        <div class="tabs-header">
+          <button class="tab-btn active" data-tab="tab-blog">📝 Blog</button>
+          <button class="tab-btn" data-tab="tab-linkedin">👥 LinkedIn</button>
+          <button class="tab-btn" data-tab="tab-x">🐦 Thread X</button>
+          <button class="tab-btn" data-tab="tab-email">✉️ Newsletter</button>
+          <button class="tab-btn" data-tab="tab-banners">🎨 Banners</button>
+        </div>
+
+        <!-- CONTEÚDO DAS ABAS (MOCKUPS INTERATIVOS) -->
+        <div class="tabs-body">
+
+          <!-- ABA 1: BLOG POST (SEO) -->
+          <div class="tab-content active" id="tab-blog">
+            <div class="blog-mockup">
+              <div class="seo-badge-box">
+                <span class="seo-tag">Meta Keywords: <strong>IA Generativa, LGPD, Seguranca Digital</strong></span>
+                <span class="seo-tag">Leiturabilidade: <strong>Alta (8.5/10)</strong></span>
+              </div>
+              <div class="blog-canvas">
+                <h3 class="blog-title" id="val-blog-title">Aguardando geração do artigo...</h3>
+                <p class="blog-author-line">Por <strong>Sabrina Guerra</strong> | 4 min de leitura</p>
+                <div class="blog-text-area" id="val-blog-body">
+                  <p class="text-placeholder">// O artigo gerado com tags SEO e headings hierárquicos será renderizado
+                    aqui linha por linha após o disparo do motor central.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ABA 2: LINKEDIN FEED CARD -->
+          <div class="tab-content" id="tab-linkedin">
+            <div class="linkedin-mockup-card">
+              <div class="linkedin-card-header">
+                <!-- Avatar fictício da Sabrina -->
+                <div class="linkedin-avatar">SG</div>
+                <div class="linkedin-author-info">
+                  <h4>Sabrina Guerra</h4>
+                  <p>Especialista em Transformação Digital | Board Advisor</p>
+                  <span>Agora • editado • 🌐</span>
+                </div>
+                <span class="linkedin-follow-btn">+ Seguir</span>
+              </div>
+
+              <div class="linkedin-card-body">
+                <p class="linkedin-text" id="val-linkedin-body">
+                  // O post otimizado com emojis para o feed do LinkedIn aparecerá aqui...
+                </p>
+                <div class="linkedin-hashtag-box">#Gemini Enter-ViewSuite #InteligenciaArtificial #SecurityByDefault
+                  #LGPD</div>
+              </div>
+
+              <!-- Imagem da campanha inserida no post do LinkedIn -->
+              <div class="linkedin-campaign-image-box">
+                <img src="./assets/banner-ai.png" alt="AI Connections" class="campaign-embedded-img" />
+              </div>
+
+              <div class="linkedin-reactions-bar">
+                <span class="reactions-icons">👍❤️👏 412</span>
+                <span class="comments-text">14 comentários • 8 compartilhamentos</span>
+              </div>
+
+              <div class="linkedin-actions-row">
+                <button class="linkedin-action">👍 Gostei</button>
+                <button class="linkedin-action">💬 Comentar</button>
+                <button class="linkedin-action">🔁 Compartilhar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ABA 3: THREAD X (TWITTER) -->
+          <div class="tab-content" id="tab-x">
+            <div class="x-thread-container" id="val-x-thread">
+              <!-- Tweet 1 -->
+              <div class="x-tweet">
+                <div class="x-tweet-header">
+                  <div class="x-avatar">SG</div>
+                  <div class="x-author-meta">
+                    <span class="x-name">Sabrina Guerra</span>
+                    <span class="x-handle">@sabrina_guerra • 1s</span>
+                  </div>
+                </div>
+                <div class="x-tweet-body">
+                  1/4 O grande erro corporativo atual é tratar Inteligência Artificial como se fosse apenas um chatbot
+                  amigável para tirar dúvidas pontuais. O valor de verdade reside na integração estrutural profunda. 👇
+                  Thread
+                </div>
+                <div class="x-tweet-footer">
+                  <span>💬 4</span> <span>🔁 12</span> <span>❤️ 85</span> <span>📊 1.2K</span>
+                </div>
+              </div>
+
+              <!-- Tweet 2 -->
+              <div class="x-tweet">
+                <div class="x-tweet-header">
+                  <div class="x-avatar">SG</div>
+                  <div class="x-author-meta">
+                    <span class="x-name">Sabrina Guerra</span>
+                    <span class="x-handle">@sabrina_guerra • 1s</span>
+                  </div>
+                </div>
+                <div class="x-tweet-body">
+                  2/4 Para escala real, a IA precisa de conexão direta via SDK com APIs operacionais críticas. Mas
+                  atenção: automação inteligente exige segurança absoluta por padrão. Não dá para colocar compliance em
+                  segundo plano.
+                </div>
+                <div class="x-tweet-footer">
+                  <span>💬 1</span> <span>🔁 4</span> <span>❤️ 42</span> <span>📊 850</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ABA 4: NEWSLETTER EMAIL -->
+          <div class="tab-content" id="tab-email">
+            <div class="email-mockup-frame">
+              <div class="email-header-fields">
+                <p><strong>De:</strong> news@gemini-enter-view-media.com (Gemini Enter-View Newsletter)</p>
+                <p><strong>Para:</strong> assinantes@vip.com</p>
+                <p><strong>Assunto:</strong> <span id="val-email-subject">Informativo Semanal Gemini Enter-View</span>
+                </p>
+              </div>
+              <div class="email-body-canvas">
+                <div class="email-banner-strip">GEMINI ENTER-VIEW PODCAST WEEKLY</div>
+                <div class="email-text-content" id="val-email-body">
+                  <p class="text-placeholder">// A newsletter editada e formatada para disparo direto na base de e-mails
+                    de marketing surgirá aqui...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ABA 5: BANNERS CAROUSEL -->
+          <div class="tab-content" id="tab-banners">
+            <div class="banners-carousel-container">
+              <div class="carousel-track">
+                <!-- Slide 1 -->
+                <div class="carousel-slide active" id="slide-1">
+                  <img src="./assets/banner-ai.png" alt="Gemini Enter-View AI Solutions" class="carousel-img" />
+                  <div class="carousel-caption">
+                    <h4>Artigo Banner Principal</h4>
+                    <p>Ideal para capa do Blog Post e miniaturas de canais de tecnologia.</p>
+                  </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide" id="slide-2">
+                  <img src="./assets/podcast-studio.png" alt="Gemini Enter-View Podcast Studio" class="carousel-img" />
+                  <div class="carousel-caption">
+                    <h4>Podcast Promo Graphic</h4>
+                    <p>Ideal para divulgação no feed do Instagram, LinkedIn e redes de áudio.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Controles do Carrossel -->
+              <div class="carousel-controls">
+                <button class="carousel-btn prev-btn" id="btn-prev-slide">◀ Anterior</button>
+                <div class="carousel-dots-indicators">
+                  <span class="indicator-dot active" data-index="0"></span>
+                  <span class="indicator-dot" data-index="1"></span>
+                </div>
+                <button class="carousel-btn next-btn" id="btn-next-slide">Próximo ▶</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lógica JavaScript -->
+  <script src="./app.js"></script>
+</body>
+
+</html>

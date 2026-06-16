@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Workshop — Guia Interativo</title>
+  
+  <!-- Fontes Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Biblioteca de Markdown (Marked) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM - TEMA DARK CYBERPUNK PREMIUM FOR GUIDES
+       ========================================================================== */
+    :root {
+      --bg-primary: #040711;
+      --bg-gradient: radial-gradient(circle at 50% 50%, #0a0f22 0%, #040711 100%);
+      --bg-card: rgba(15, 23, 42, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.06);
+      
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      /* Cores de Destaque */
+      --color-blue: #2563eb;
+      --color-cyan: #06b6d4;
+      --color-purple: #7c3aed;
+      --color-rose: #f43f5e;
+      --color-emerald: #10b981;
+      
+      --shadow-premium: 0 15px 50px -10px rgba(0, 0, 0, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      background-image: var(--bg-gradient);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Brilho de fundo */
+    .glow-light {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .guide-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Barra de Navegação */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-back {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-glass);
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--text-secondary);
+      transform: translateX(-3px);
+    }
+
+    /* Card de Conteúdo do Guia */
+    .guide-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: var(--shadow-premium);
+    }
+
+    /* Estilização Avançada do HTML Renderizado (Markdown) */
+    .rendered-content {
+      font-size: 1.05rem;
+    }
+
+    /* Headings */
+    .rendered-content h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 16px;
+    }
+
+    .rendered-content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rendered-content h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: #f8fafc;
+    }
+
+    .rendered-content p {
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+    }
+
+    .rendered-content a {
+      color: var(--color-cyan);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed rgba(6, 182, 212, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .rendered-content a:hover {
+      color: #22d3ee;
+      border-bottom-style: solid;
+      border-bottom-color: #22d3ee;
+    }
+
+    /* Listas */
+    .rendered-content ul, .rendered-content ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+      color: var(--text-secondary);
+    }
+
+    .rendered-content li {
+      margin-bottom: 8px;
+    }
+
+    .rendered-content li strong {
+      color: #f1f5f9;
+    }
+
+    /* Código */
+    .rendered-content code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: #38bdf8;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .rendered-content pre {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 28px;
+      overflow-x: auto;
+    }
+
+    .rendered-content pre code {
+      background: transparent;
+      padding: 0;
+      border: none;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Alertas Estilizados (GitHub-style Blockquotes) */
+    .alert-box {
+      border-left: 4px solid;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .alert-important {
+      border-left-color: var(--color-purple);
+      background: rgba(124, 58, 237, 0.04);
+      border-top: 1px solid rgba(124, 58, 237, 0.08);
+      border-right: 1px solid rgba(124, 58, 237, 0.04);
+      border-bottom: 1px solid rgba(124, 58, 237, 0.04);
+    }
+
+    .alert-important strong {
+      color: #c084fc !important;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .alert-tip {
+      border-left-color: var(--color-emerald);
+      background: rgba(16, 185, 129, 0.04);
+      border-top: 1px solid rgba(16, 185, 129, 0.08);
+      border-right: 1px solid rgba(16, 185, 129, 0.04);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.04);
+    }
+
+    .alert-tip strong {
+      color: #34d399 !important;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .alert-note {
+      border-left-color: var(--color-blue);
+      background: rgba(37, 99, 235, 0.04);
+      border-top: 1px solid rgba(37, 99, 235, 0.08);
+      border-right: 1px solid rgba(37, 99, 235, 0.04);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.04);
+    }
+
+    .alert-note strong {
+      color: #60a5fa !important;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .alert-warning {
+      border-left-color: var(--color-rose);
+      background: rgba(244, 63, 94, 0.04);
+      border-top: 1px solid rgba(244, 63, 94, 0.08);
+      border-right: 1px solid rgba(244, 63, 94, 0.04);
+      border-bottom: 1px solid rgba(244, 63, 94, 0.04);
+    }
+
+    .alert-warning strong {
+      color: #f43f5e !important;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Tabelas Markdown */
+    .rendered-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 0.95rem;
+    }
+
+    .rendered-content th {
+      background: rgba(255, 255, 255, 0.04);
+      color: #f1f5f9;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .rendered-content td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+    }
+
+    .rendered-content tr:hover td {
+      background: rgba(255, 255, 255, 0.01);
+      color: #f8fafc;
+    }
+
+    /* Divisores */
+    .rendered-content hr {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin: 40px 0;
+    }
+
+    /* Loader */
+    .loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0;
+      gap: 16px;
+      color: var(--text-secondary);
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(124, 58, 237, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--color-purple);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsividade do Card */
+    @media (max-width: 768px) {
+      .guide-card {
+        padding: 24px;
+      }
+      .rendered-content h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-light"></div>
+
+  <div class="guide-wrapper">
+    
+    <nav class="nav-bar">
+      <div class="brand-area">
+        <span class="brand-logo">Antigravity Dev Hub</span>
+      </div>
+      <a href="./index.html" class="btn-back">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Voltar ao Portal
+      </a>
+    </nav>
+
+    <main class="guide-card">
+      <div id="guide-loader" class="loader">
+        <div class="spinner"></div>
+        <p>Carregando guia do workshop...</p>
+      </div>
+      
+      <article id="guide-content" class="rendered-content" style="display: none;"></article>
+    </main>
+
+  </div>
+
+  <script>
+    // Recuperar o arquivo Markdown que deve ser carregado da URL (?file=NOME.md)
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileName = urlParams.get('file');
+
+    // Mapear apenas arquivos seguros permitidos para evitar carregamentos indesejados
+    const allowedFiles = {
+      'LIVE_DEMO_AGRO_APRESENTACAO.md': 'LIVE_DEMO_AGRO_APRESENTACAO.md',
+      'BONUS_HANDSON_BACKEND.md': 'BONUS_HANDSON_BACKEND.md'
+    };
+
+    const fileToFetch = allowedFiles[fileName];
+
+    if (!fileToFetch) {
+      document.getElementById('guide-loader').innerHTML = `
+        <p style="color: var(--color-rose); font-weight: 600;">Erro: Guia não encontrado ou inválido!</p>
+        <p style="font-size: 0.9rem; margin-top: 8px;">Por favor, selecione um guia válido na página principal.</p>
+      `;
+    } else {
+      // Carregar o arquivo Markdown local via Fetch API
+      fetch(`./${fileToFetch}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Não foi possível ler o arquivo.');
+          }
+          return response.text();
+        })
+        .then(markdownText => {
+          // Converter o Markdown para HTML usando o marked.js
+          const rawHtml = marked.parse(markdownText);
+          
+          const contentArea = document.getElementById('guide-content');
+          contentArea.innerHTML = rawHtml;
+          
+          // Pós-processamento dos alertas GitHub-style em blockquotes
+          const blockquotes = contentArea.querySelectorAll('blockquote');
+          blockquotes.forEach(bq => {
+            const text = bq.innerHTML;
+            if (text.includes('[!IMPORTANT]')) {
+              bq.className = 'alert-box alert-important';
+              bq.innerHTML = text.replace('[!IMPORTANT]', '<strong>⚠️ REQUISITO IMPORTANTE</strong><br>');
+            } else if (text.includes('[!TIP]')) {
+              bq.className = 'alert-box alert-tip';
+              bq.innerHTML = text.replace('[!TIP]', '<strong>💡 DICA VALIOSA</strong><br>');
+            } else if (text.includes('[!NOTE]')) {
+              bq.className = 'alert-box alert-note';
+              bq.innerHTML = text.replace('[!NOTE]', '<strong>📝 NOTA INFORMATIVA</strong><br>');
+            } else if (text.includes('[!WARNING]')) {
+              bq.className = 'alert-box alert-warning';
+              bq.innerHTML = text.replace('[!WARNING]', '<strong>🔥 ATENÇÃO</strong><br>');
+            }
+          });
+
+          // Pós-processamento de links para arquivos Markdown locais
+          const links = contentArea.querySelectorAll('a');
+          links.forEach(link => {
+            const href = link.getAttribute('href') || '';
+            // Se o link apontar para um arquivo .md local neste repositório, ajusta para usar o visualizador de guias
+            if (href.endsWith('.md') && !href.startsWith('http')) {
+              const baseName = href.substring(href.lastIndexOf('/') + 1);
+              if (allowedFiles[baseName]) {
+                link.setAttribute('href', `./guide.html?file=${baseName}`);
+                // Garante que abra na mesma aba para navegação integrada, ou respeita o target original
+                link.removeAttribute('target');
+              }
+            }
+          });
+
+          // Exibir o conteúdo e ocultar o loader
+          document.getElementById('guide-loader').style.display = 'none';
+          contentArea.style.display = 'block';
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById('guide-loader').innerHTML = `
+            <p style="color: var(--color-rose); font-weight: 600;">Erro ao renderizar o guia!</p>
+            <p style="font-size: 0.9rem; margin-top: 8px;">Ocorreu uma falha ao tentar ler e converter os dados.</p>
+          `;
+        });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Server-Prise - Autonomous B2B Integration & Webhook Connector Generator</title>
+  
+  <!-- Fontes Premium do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Estilo customizado (Vanilla CSS com Design System Premium Claro) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div class="app-container">
+    
+    <!-- Sidebar Lateral de Navegação & Contexto -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Gemini Server-Prise</h1>
+          <span class="brand-tag">Tech SaaS Suite</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-menu">
+        <div class="menu-category">WORKSPACE</div>
+        <a href="#" class="menu-item active" id="nav-dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+          B2B Integrator
+        </a>
+        <a href="#" class="menu-item disabled">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Security Policies
+        </a>
+        <a href="#" class="menu-item disabled">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+          API Analytics
+        </a>
+      </div>
+      
+      <!-- Mini-guia Educativo informal para a Sabrina -->
+      <div class="sidebar-guide-card">
+        <h3>Como funciona a mágica? ✨</h3>
+        <p><strong>1.</strong> Selecione uma especificação técnica de um cliente B2B à esquerda.</p>
+        <p><strong>2.</strong> Dispare o Agente autônomo. Ele lerá a documentação, gerará o código Node.js seguro e testará tudo no sandbox local.</p>
+        <p><strong>3.</strong> Use o playground da direita para disparar webhooks reais e testar a segurança contra ataques cibernéticos!</p>
+      </div>
+      
+      <div class="sidebar-footer">
+        <span class="user-name">Sabrina Guerra</span>
+        <span class="user-role">SaaS Lead Engineer</span>
+      </div>
+    </aside>
+    
+    <!-- Área de Conteúdo Principal -->
+    <main class="main-content">
+      
+      <!-- Header Superior com Indicadores e Métricas -->
+      <header class="main-header">
+        <div class="header-title-area">
+          <h2>B2B Integration Gateway</h2>
+          <p class="header-subtitle">Gere, valide e teste adaptadores de webhook seguros de forma 100% autônoma</p>
+        </div>
+        
+        <!-- Métricas / Status Cards -->
+        <div class="header-metrics">
+          <div class="metric-mini-card">
+            <span class="metric-label">Conexões Ativas</span>
+            <div class="metric-value-container">
+              <span class="metric-value" id="connections-count">0/3</span>
+              <span class="metric-status-dot pulse-success"></span>
+            </div>
+          </div>
+          
+          <div class="metric-mini-card">
+            <span class="metric-label">Mock Server B2B</span>
+            <div class="metric-value-container">
+              <span class="metric-value text-success" id="server-status">OFFLINE</span>
+            </div>
+          </div>
+          
+          <div class="metric-mini-card">
+            <span class="metric-label">Proteção Antivazamento</span>
+            <div class="metric-value-container">
+              <span class="metric-value text-secured">ATIVADA</span>
+            </div>
+          </div>
+          
+          <div class="metric-mini-card">
+            <span class="metric-label">Estado do Agente</span>
+            <div class="metric-value-container">
+              <span class="metric-value" id="agent-state">Ocioso</span>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Workspace Grid Principal de 3 Colunas -->
+      <div class="workspace-grid">
+        
+        <!-- COLUNA 1: ESPECIFICAÇÃO & CÓDIGO GERADO -->
+        <section class="workspace-col col-spec">
+          
+          <!-- Painel da Spec original -->
+          <div class="card glass-panel" id="partner-spec-card">
+            <div class="card-header">
+              <div class="card-title-container">
+                <span class="card-badge purple">1. SELEÇÃO</span>
+                <h3>Documentação do Parceiro</h3>
+              </div>
+              <div class="partner-selector-wrapper">
+                <select id="partner-selector" class="custom-select">
+                  <option value="stripe">Stripe Webhook (JSON OpenAPI)</option>
+                  <option value="salesforce">Salesforce Stream (YAML Spec)</option>
+                  <option value="hubspot">HubSpot Event (Markdown Text)</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="card-body scrollable">
+              <!-- Visualizador de Spec Brutalmente profissional -->
+              <div class="spec-viewer">
+                <div class="spec-file-header">
+                  <span id="spec-filename">stripe_webhook_spec.json</span>
+                  <span class="spec-format">openapi 3.0</span>
+                </div>
+                <pre class="code-editor-pre"><code id="spec-code-block" class="language-json">Carregando especificação...</code></pre>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Painel do Código de Integração Gerado pelo Agente -->
+          <div class="card glass-panel" id="generated-code-card">
+            <div class="card-header">
+              <div class="card-title-container">
+                <span class="card-badge blue">CÓDIGO GERADO</span>
+                <h3>Conector de Integração Seguro</h3>
+              </div>
+              <span class="file-tab" id="generated-filename">webhook-adapter.js</span>
+            </div>
+            
+            <div class="card-body no-padding scrollable dark-theme">
+              <div class="ide-code-viewer">
+                <div class="ide-gutter">
+                  <!-- Gerado dinamicamente via JS -->
+                </div>
+                <pre class="code-editor-pre"><code id="generated-code-box" class="language-javascript">// Aguardando disparo do Motor de Integração Gemini Server-Prise para iniciar a síntese...</code></pre>
+              </div>
+            </div>
+          </div>
+          
+        </section>
+        
+        <!-- COLUNA 2: CONSOLE DO AGENTE & DIAGNÓSTICOS -->
+        <section class="workspace-col col-agent">
+          
+          <div class="card glass-panel flex-stretch">
+            <div class="card-header border-bottom">
+              <div class="card-title-container">
+                <span class="card-badge amethyst">2. COORDENAÇÃO</span>
+                <h3>Motor de Integração Gemini Server-Prise</h3>
+              </div>
+            </div>
+            
+            <!-- Área de Disparo e Status Principal do Agente -->
+            <div class="agent-control-box">
+              <button id="run-agent-btn" class="btn-primary-spark">
+                <span class="sparkle-icon">✨</span>
+                <span>Disparar Motor Autônomo</span>
+              </button>
+              
+              <div class="agent-status-bar">
+                <div class="progress-info">
+                  <span id="progress-phase-label">Aguardando ativação...</span>
+                  <span id="progress-percentage">0%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="agent-progress" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Etapas Visuais de Processamento (Cards de Fluxo) -->
+            <div class="agent-flow-steps">
+              <div class="flow-step" id="step-parsing">
+                <div class="step-num">1</div>
+                <div class="step-desc">
+                  <h4>Parsing & Schema Extraction</h4>
+                  <p>Mapeamento de payloads e assinaturas.</p>
+                </div>
+                <div class="step-check">✓</div>
+              </div>
+              <div class="flow-step" id="step-generation">
+                <div class="step-num">2</div>
+                <div class="step-desc">
+                  <h4>Secure Code Generation</h4>
+                  <p>Injeção de HMAC, rate-limits e sanitização.</p>
+                </div>
+                <div class="step-check">✓</div>
+              </div>
+              <div class="flow-step" id="step-mocking">
+                <div class="step-num">3</div>
+                <div class="step-desc">
+                  <h4>Mock Server Spin-up</h4>
+                  <p>Instanciação de sandbox local para validação.</p>
+                </div>
+                <div class="step-check">✓</div>
+              </div>
+              <div class="flow-step" id="step-validation">
+                <div class="step-num">4</div>
+                <div class="step-desc">
+                  <h4>Gemini Server-Prise Security Shield Tests</h4>
+                  <p>Validação contra ataques cibernéticos simulados.</p>
+                </div>
+                <div class="step-check">✓</div>
+              </div>
+            </div>
+            
+            <!-- Terminal de Logs retro-futurista e escuro -->
+            <div class="card-body no-padding dark-theme flex-grow scrollable">
+              <div class="agent-terminal">
+                <div class="terminal-header">
+                  <div class="terminal-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                  </div>
+                  <span class="terminal-title">gemini-server-prise-integration-terminal</span>
+                </div>
+                <div class="terminal-console-logs" id="terminal-logs">
+                  <div class="terminal-line system-line">[SYSTEM] Terminal de logs do agente inicializado de forma segura.</div>
+                  <div class="terminal-line system-line">[SYSTEM] Pronto para aceitar comandos. Aguardando disparo do agente...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </section>
+        
+        <!-- COLUNA 3: PLAYGROUND & TESTES DE WEBHOOKS -->
+        <section class="workspace-col col-sandbox">
+          
+          <div class="card glass-panel flex-stretch relative-wrapper" id="sandbox-card">
+            
+            <!-- Overlay de Bloqueio antes de gerar o conector -->
+            <div class="card-lock-overlay" id="sandbox-lock-overlay">
+              <div class="lock-box">
+                <div class="lock-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </div>
+                <h3>Playground Bloqueado</h3>
+                <p>Dispare a IA do Agente primeiro para gerar o conector e instanciar o servidor de Webhooks local!</p>
+              </div>
+            </div>
+            
+            <div class="card-header">
+              <div class="card-title-container">
+                <span class="card-badge green">3. PLAYGROUND</span>
+                <h3>Webhook Playground & Sandbox</h3>
+              </div>
+            </div>
+            
+            <div class="card-body scrollable flex-grow">
+              
+              <!-- Seletor de Evento e Editor de Payload -->
+              <div class="sandbox-section">
+                <div class="section-row">
+                  <label for="event-selector" class="control-label">Selecionar Tipo de Evento:</label>
+                  <select id="event-selector" class="custom-select small">
+                    <!-- Gerado dinamicamente via JS -->
+                  </select>
+                </div>
+                
+                <div class="payload-editor-wrapper">
+                  <div class="editor-header">
+                    <span>Editar Payload JSON de Teste</span>
+                    <span class="editor-tag">raw json</span>
+                  </div>
+                  <textarea id="payload-textarea" class="payload-textarea" spellcheck="false"></textarea>
+                </div>
+              </div>
+              
+              <!-- Simuladores de Ataques / Disparadores de Rede -->
+              <div class="sandbox-section border-top">
+                <h4 class="section-title">Disparar Simulações de Rede / Ações Criptográficas</h4>
+                
+                <div class="sandbox-action-grid">
+                  <button id="btn-send-safe" class="sandbox-btn btn-success">
+                    <span class="btn-icon">🛡️</span>
+                    <div class="btn-text">
+                      <strong>Webhook Seguro</strong>
+                      <span>Envio íntegro com HMAC Válido</span>
+                    </div>
+                  </button>
+                  
+                  <button id="btn-send-tampered" class="sandbox-btn btn-danger">
+                    <span class="btn-icon">🪓</span>
+                    <div class="btn-text">
+                      <strong>Assinatura Inválida</strong>
+                      <span>Simular Hacker Adulterando Payload</span>
+                    </div>
+                  </button>
+                  
+                  <button id="btn-send-replay" class="sandbox-btn btn-warning">
+                    <span class="btn-icon">⏳</span>
+                    <div class="btn-text">
+                      <strong>Ataque de Replay</strong>
+                      <span>Timestamp expirado há 1 hora</span>
+                    </div>
+                  </button>
+                  
+                  <button id="btn-send-spam" class="sandbox-btn btn-purple">
+                    <span class="btn-icon">⚡</span>
+                    <div class="btn-text">
+                      <strong>Ataque de Spam</strong>
+                      <span>Testar Rate-Limiter com 12 requests</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Monitor de Tráfego de Webhooks em Tempo Real -->
+              <div class="sandbox-section border-top flex-grow-container">
+                <h4 class="section-title">Monitor de Tráfego Webhook (Live Server)</h4>
+                
+                <div class="traffic-monitor-table-wrapper">
+                  <table class="traffic-table">
+                    <thead>
+                      <tr>
+                        <th>Hora</th>
+                        <th>Endpoint</th>
+                        <th>Método</th>
+                        <th>Resultado</th>
+                        <th>Status HTTP</th>
+                      </tr>
+                    </thead>
+                    <tbody id="traffic-monitor-body">
+                      <tr class="empty-traffic-row">
+                        <td colspan="5">Aguardando tráfego de entrada no servidor mock...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+        </section>
+        
+      </div>
+      
+    </main>
+    
+  </div>
+  
+  <!-- Injeção dos scripts da simulação -->
+  <script src="app.js"></script>
+</body>
+</html>

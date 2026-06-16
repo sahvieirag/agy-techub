@@ -1,0 +1,11 @@
+{
+  "name": "gemini-enter-view-media",
+  "version": "1.0.0",
+  "description": "Gemini Enter-View - Omnichannel Content Explosion Engine",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 5176"
+  },
+  "author": "Gemini Enter-View Project",
+  "license": "MIT"
+}
