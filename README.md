@@ -44,7 +44,7 @@ Colocar o portal para rodar localmente é super simples e rápido! Você só pre
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/sabrinaguerra/agy-techub.git
+   git clone https://github.com/sahvieirag/agy-techub.git
    cd agy-techub
    ```
 
